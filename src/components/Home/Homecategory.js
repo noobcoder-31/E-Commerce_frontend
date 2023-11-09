@@ -25,7 +25,7 @@ const Homecategory = () => {
       <div className="mt-4 flow-root">
         <div className="-my-2">
           <div className="relative box-content h-80 overflow-x-auto py-2 w-full xl:overflow-visible">
-            <div className="min-w-screen-xl absolute flex flex-no-wrap  md:overflow-y-auto space-x-8 px-4 sm:px-6 lg:px-8 xl:relative xl:grid xl:grid-cols-6 xl:gap-x-8 xl:space-x-0 xl:px-0">
+            <div className="min-w-screen-xl absolute flex flex-no-wrap md:overflow-y-auto space-x-8 px-4 sm:px-6 lg:px-8 xl:relative xl:grid xl:grid-cols-6 xl:gap-x-8 xl:space-x-0 xl:px-0">
               {categoriesToShow?.map((category) => (
                 <Link
                   key={category.name}
@@ -37,6 +37,7 @@ const Homecategory = () => {
                       src={category.image}
                       alt=""
                       className="h-full w-full object-cover object-center"
+                      loading="lazy" // Add lazy loading attribute
                     />
                   </span>
                   <span

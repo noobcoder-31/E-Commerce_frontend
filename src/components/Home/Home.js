@@ -54,11 +54,13 @@ export default function Home() {
             src={homeImage}
             alt="Your Image"
             className="w-full hidden md:block"
+            load="lazy"
           />
           <img
             src={homeImageMobile}
             alt="Your Image (Mobile)"
             className="w-full block md:hidden"
+            load="lazy"
           />
           {/* Center the text container on mobile devices */}
           <div className="absolute top-0 right-0 bottom-0 left-0 p-4 content-center md:p-8 mx-2 md:mx-40 my-8 md:my-40 text-gray-200 bg-black bg-opacity-20 flex flex-col items-center justify-center">

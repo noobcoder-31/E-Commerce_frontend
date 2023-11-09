@@ -120,9 +120,6 @@ export default function Navbar() {
           <Link to="/" className="text-sm md:text-lg">
             Home
           </Link>
-          <Link key="trending" to="/products" className="text-sm md:text-lg">
-            Trending
-          </Link>
           <Link
             key="men"
             to="/products-filters?category=men"
@@ -136,6 +133,13 @@ export default function Navbar() {
             className="text-sm md:text-lg"
           >
             Women
+          </Link>
+          <Link
+            key="trending"
+            to="/products-filters?category=kids"
+            className="text-sm md:text-lg"
+          >
+            Kids
           </Link>
           <Link
             key="mobiles"

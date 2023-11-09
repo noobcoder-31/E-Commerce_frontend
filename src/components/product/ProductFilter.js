@@ -1,7 +1,7 @@
 import axios from "axios";
 import URL from "../Url";
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom"; // Import useNavigate
 import ShowProducts from "./ShowProduct";
 import LoadingComponent from "../LoadingComponent";
 import Nothing from "../Nothing";
@@ -11,58 +11,70 @@ export default function ProductFilter() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [products, setProducts] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [shouldReloadProducts, setShouldReloadProducts] = useState(true); // New state
+  const [shouldReloadProducts, setShouldReloadProducts] = useState(true);
 
-  // Get query string
   const [params, setParams] = useSearchParams();
   const category = params.get("category");
   const brand = params.get("brand");
 
-  // Filters
   const [color, setColor] = useState("");
   const [price, setPrice] = useState("");
   const [size, setSize] = useState("");
 
-  let productUrl = `${URL}/products`;
-
-  if (category) {
-    productUrl = `${productUrl}?category=${category}`;
-  }
-
-  if (brand) {
-    productUrl = `${productUrl}${category ? "&" : "?"}brand=${brand}`;
-  }
-
-  if (size) {
-    productUrl = `${productUrl}${category || brand ? "&" : "?"}size=${size}`;
-  }
-
-  if (price) {
-    productUrl = `${productUrl}${
-      category || brand || size ? "&" : "?"
-    }price=${price}`;
-  }
-
-  if (color) {
-    productUrl = `${productUrl}${
-      category || brand || size || price ? "&" : "?"
-    }color=${color?.name}`;
-  }
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
+    const source = axios.CancelToken.source();
+
     axios
-      .get(productUrl)
+      .get(`${URL}/products${category ? `?category=${category}` : ""}`, {
+        cancelToken: source.token,
+      })
       .then((res) => {
-        console.log(productUrl);
-        console.log(res.data.products);
+        //console.log("category");
         setProducts(res.data.products);
-        setLoading(() => !loading);
+        setLoading(false);
       })
       .catch((err) => {
-        console.log(err);
+        if (axios.isCancel(err)) {
+          // Request was canceled, ignore the error
+        } else {
+          console.log(err);
+        }
       });
-  }, [productUrl]);
+
+    return () => source.cancel("Request canceled");
+  }, [category]);
+
+  useEffect(() => {
+    setLoading(true);
+    const source = axios.CancelToken.source();
+
+    axios
+      .get(`${URL}/products${brand ? `?brand=${brand}` : ""}`, {
+        cancelToken: source.token,
+      })
+      .then((res) => {
+        //console.log("brand");
+        setProducts(res.data.products);
+        setLoading(false);
+      })
+      .catch((err) => {
+        if (axios.isCancel(err)) {
+          // Request was canceled, ignore the error
+        } else {
+          console.log(err);
+        }
+      });
+
+    return () => source.cancel("Request canceled");
+  }, [brand]);
+
+  const navigateToCategory = (newCategory) => {
+    setProducts(null);
+    navigate(`/products-filters?category=${newCategory}`);
+  };
 
   return (
     <>
