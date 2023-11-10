@@ -62,9 +62,13 @@ export default function Navbar() {
             style={{ textAlign: "center", width: "100%" }}
             className="flex-1 text-center text-xs md:text-sm font-medium text-white lg:flex-none"
           >
-            {coupons
-              ? `${coupons.code}- ${coupons.discount}% , ${coupons.daysLeft}`
-              : "No Flash sale at moment"}
+            {coupons ? (
+              `${coupons.code}- ${coupons.discount}% , ${coupons.daysLeft}`
+            ) : (
+              <p className="text-red-600 text-xl bg-white">
+                Server Not Available !! Please wait...
+              </p>
+            )}
           </p>
 
           <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6"></div>
