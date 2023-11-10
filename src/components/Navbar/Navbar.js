@@ -65,7 +65,7 @@ export default function Navbar() {
             {coupons ? (
               `${coupons.code}- ${coupons.discount}% , ${coupons.daysLeft}`
             ) : (
-              <p className="text-red-600 text-xl bg-white">
+              <p className="text-red-600 text-lg bg-black">
                 Server Not Available !! Please wait...
               </p>
             )}
