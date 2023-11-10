@@ -81,62 +81,69 @@ export default function CartComponent() {
               role="list"
               className="divide-y divide-gray-200 border-t border-b border-gray-200"
             >
-              {cartItems?.map((product) => (
-                <li key={product._id} className="flex py-6 sm:py-10">
-                  <div className="flex-shrink-0">
-                    <img
-                      src={product.product.images[0]}
-                      alt={product.product.name}
-                      className="h-24 w-24 rounded-md object-cover object-center sm:h-48 sm:w-48"
-                    />
-                  </div>
+              {cartItems.length === 0 ? (
+                <p className="font-semibold md:text-lg  text-sm m-4">
+                  {" "}
+                  your cart is Empty Add items to your cart
+                </p>
+              ) : (
+                cartItems.map((product) => (
+                  <li key={product._id} className="flex py-6 sm:py-10">
+                    <div className="flex-shrink-0">
+                      <img
+                        src={product.product.images[0]}
+                        alt={product.product.name}
+                        className="h-24 w-24 rounded-md object-cover object-center sm:h-48 sm:w-48"
+                      />
+                    </div>
 
-                  <div className="ml-4 flex flex-1 flex-col justify-between sm:ml-6">
-                    <div className="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
-                      <div>
-                        <div className="flex justify-between">
-                          <h3 className="text-sm">
-                            <p className="font-semibold text-gray-700 hover:text-gray-800 md:text-xl">
-                              {product.product.name}
+                    <div className="ml-4 flex flex-1 flex-col justify-between sm:ml-6">
+                      <div className="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
+                        <div>
+                          <div className="flex justify-between">
+                            <h3 className="text-sm">
+                              <p className="font-semibold text-gray-700 hover:text-gray-800 md:text-xl">
+                                {product.product.name}
+                              </p>
+                            </h3>
+                          </div>
+                          <div className="mt-1 flex text-sm">
+                            <p className="text-gray-500">{product.color}</p>
+
+                            <p className="ml-4 border-l border-gray-200 pl-4 text-gray-500">
+                              {product.size}
                             </p>
-                          </h3>
-                        </div>
-                        <div className="mt-1 flex text-sm">
-                          <p className="text-gray-500">{product.color}</p>
-
-                          <p className="ml-4 border-l border-gray-200 pl-4 text-gray-500">
-                            {product.size}
+                          </div>
+                          <p className="mt-1 text-sm font-medium text-gray-900 text-left">
+                            ₹{product?.product?.price} x {product?.quantity} = ₹
+                            {
+                              (Total +=
+                                product?.product?.price * product?.quantity)
+                            }
                           </p>
                         </div>
-                        <p className="mt-1 text-sm font-medium text-gray-900 text-left">
-                          ₹{product?.product?.price} x {product?.quantity} = ₹
-                          {
-                            (Total +=
-                              product?.product?.price * product?.quantity)
-                          }
-                        </p>
-                      </div>
 
-                      <div className="mt-4 sm:mt-0 sm:pr-9 text-left">
-                        <label className=" p-2 ">
-                          Quantity : {product.quantity}
-                        </label>
+                        <div className="mt-4 sm:mt-0 sm:pr-9 text-left">
+                          <label className=" p-2 ">
+                            Quantity : {product.quantity}
+                          </label>
 
-                        {/* remove */}
-                        <div className="absolute top-0 right-0">
-                          <button
-                            onClick={() => removeFromCart(product)}
-                            className="-m-2 inline-flex p-2 text-gray-400 hover:text-gray-500"
-                          >
-                            <span className="sr-only">Remove</span>
-                            <img src={deleteImage}></img>
-                          </button>
+                          {/* remove */}
+                          <div className="absolute top-0 right-0">
+                            <button
+                              onClick={() => removeFromCart(product)}
+                              className="-m-2 inline-flex p-2 text-gray-400 hover:text-gray-500"
+                            >
+                              <span className="sr-only">Remove</span>
+                              <img src={deleteImage}></img>
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </li>
-              ))}
+                  </li>
+                ))
+              )}
             </ul>
           </section>
 
