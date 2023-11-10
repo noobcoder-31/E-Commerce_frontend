@@ -54,7 +54,7 @@ export default function Login() {
   return (
     <>
       {error2 ? (
-        <DisplayError />
+        <DisplayError error={error2} />
       ) : (
         <>
           <h1 className="md:text-xl text-lg">Happy To see You Again</h1>

@@ -12,6 +12,7 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
+  const [errorp, setErrorp] = useState("");
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -35,19 +36,19 @@ export default function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
     if (password.length < 8) {
-      setError("Password must be at least 8 characters long");
+      setErrorp("Password must be at least 8 characters long");
     } else {
       let hasCapitalLetter = /[A-Z]/.test(password);
       let hasNumber = /[0-9]/.test(password);
 
       if (!hasCapitalLetter) {
-        setError("Password must contain at least one capital letter.");
+        setErrorp("Password must contain at least one capital letter.");
       } else if (!hasNumber) {
-        setError("Password must contain at least one number.");
+        setErrorp("Password must contain at least one number.");
       } else {
         // Password meets the requirements, proceed with registration
+        setLoading(true);
         RegisterRequest();
       }
     }
@@ -61,7 +62,7 @@ export default function Register() {
     <>
       <div className="border border-gray-300 md:px-14 px-6 py-8 m-8 md:w-1/2 text-left">
         {error ? (
-          <DisplayError />
+          <DisplayError error={error} />
         ) : loading ? (
           <LoadingComponent />
         ) : success ? (
@@ -138,6 +139,7 @@ export default function Register() {
                   )}
                 </button>
               </div>
+              {errorp && <p className="text-red-600 mb-1">{errorp}</p>}
               <button
                 type="submit"
                 className="bg-indigo-600 hover:bg-white hover:text-indigo-600 hover:border hover:border-indigo-600 text-white rounded-md py-2 px-4 text-sm"
