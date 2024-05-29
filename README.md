@@ -62,10 +62,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Technologies Used
 
-- **Frontend**: React.js, React Router, Redux, React Bootstrap, Axios
+- **Frontend**: React.js, React Router, Redux, Tailwind Css, Axios
 - **Backend**: Node.js, Express.js, MongoDB, Mongoose, JSON Web Tokens (JWT)
 - **Database**: MongoDB
-- **Payment Integration**: Stripe (or any other preferred payment gateway)
 
 ## Learn More
 
