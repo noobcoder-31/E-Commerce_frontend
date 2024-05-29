@@ -1,3 +1,26 @@
+# Screenshots
+
+Landing Page :
+
+![image](https://github.com/noobcoder-31/E-Commerce_frontend/assets/114940964/6f3bfdbc-4b8d-4fd6-820c-abb4c609e3dc)
+
+Shopping Page :
+
+![image](https://github.com/noobcoder-31/E-Commerce_frontend/assets/114940964/5ef2952c-137c-42cf-8d17-debb0bdcc95b)
+
+Detailed Product :
+
+![image](https://github.com/noobcoder-31/E-Commerce_frontend/assets/114940964/0bd16ca4-d50d-47c1-800f-8cfa60adf7db)
+
+Shopping Cart :
+
+![image](https://github.com/noobcoder-31/E-Commerce_frontend/assets/114940964/ee5043c4-92e6-4d5e-a3d3-0a23d1693133)
+
+and Many More...
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
